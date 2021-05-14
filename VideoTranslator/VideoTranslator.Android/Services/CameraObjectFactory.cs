@@ -14,11 +14,11 @@ using Java.Lang;
 
 namespace VideoTranslator.Droid.Services
 {
-    class CameraDeviceFactory : ICameraDeviceFactory
+    class CameraObjectFactory : ICameraObjectFactory
     {
         private readonly CameraManager cameraManager;
 
-        public CameraDeviceFactory()
+        public CameraObjectFactory()
         {
             cameraManager = Application.Context.GetSystemService(Context.CameraService) as CameraManager;
             if (cameraManager is null)
@@ -26,6 +26,20 @@ namespace VideoTranslator.Droid.Services
                 // Надо бы организовать что-то вроде окна лога
                 AndroidEnvironment.RaiseThrowable(new Throwable("CameraManager is null"));
             }
+        }
+
+        public List<string> GetCameraIdList()
+        {
+            return cameraManager.GetCameraIdList().ToList();
+        }
+
+        public CameraObject GetCameraDevice(string id)
+        {
+            CameraObject cameraDevice = new CameraObject(id, cameraManager);
+
+            // Дописать инициализацию
+
+            return cameraDevice;
         }
     }
 }

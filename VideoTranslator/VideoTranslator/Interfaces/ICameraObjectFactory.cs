@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VideoTranslator.Interfaces
 {
-    public interface ICameraDeviceFactory
+    public interface ICameraObjectFactory
     {
     }
 }
